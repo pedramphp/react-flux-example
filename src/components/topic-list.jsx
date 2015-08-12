@@ -1,3 +1,4 @@
+'use strict';
 var React = require('react');
 var TopicStore = require('../stores/topic-store');
 var Reflux = require('reflux');
@@ -12,7 +13,7 @@ var TopicList = React.createClass({
     getInitialState: function() {
         return {
             topics: []
-        }
+        };
     },
 
     componentWillMount: function(){
@@ -23,16 +24,16 @@ var TopicList = React.createClass({
         return <div>
             Topic List
             {this.renderTopics()}
-        </div>
+        </div>;
     },
 
     renderTopics: function(){
         return this.state.topics.slice(0, 4).map(function(topic) {
-            return <Link to={"/topics/" + topic.id} className='list-group-item' key={topic.id}>
+            return <Link to={'/topics/' + topic.id} className='list-group-item' key={topic.id}>
                 <h4>{topic.name}</h4>
                 <p>{topic.description}</p>
 
-            </Link>
+            </Link>;
         });
     },
 

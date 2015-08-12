@@ -1,7 +1,7 @@
+'use strict';
 var React = require('react');
 var Header = require('./header');
 var TopicList = require('./topic-list');
-
 
 var Main = React.createClass({
     render: function() {
@@ -15,7 +15,7 @@ var Main = React.createClass({
         if(this.props.children){
             return this.props.children;
         }else{
-            return <TopicList />
+            return <TopicList />;
         }
     }
 

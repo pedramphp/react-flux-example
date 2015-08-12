@@ -1,5 +1,5 @@
+'use strict';
 var gulp = require('gulp');
-var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
@@ -8,7 +8,6 @@ var notifier = require('node-notifier');
 var server = require('gulp-server-livereload');
 var concat = require('gulp-concat');
 var sass = require('gulp-sass');
-var watch = require('gulp-watch');
 
 var notify = function(error) {
   var message = 'In: ';
@@ -22,7 +21,7 @@ var notify = function(error) {
 
   if(error.filename) {
     var file = error.filename.split('/');
-    message += file[file.length-1];
+    message += file[file.length - 1];
   }
 
   if(error.lineNumber) {
@@ -47,24 +46,25 @@ function bundle() {
     .bundle()
     .on('error', notify)
     .pipe(source('main.js'))
-    .pipe(gulp.dest('./'))
+    .pipe(gulp.dest('./'));
 }
-bundler.on('update', bundle)
+
+bundler.on('update', bundle);
 
 gulp.task('build', function() {
-  bundle()
+  bundle();
 });
 
-gulp.task('serve', function(done) {
+gulp.task('serve', function() {
   gulp.src('')
     .pipe(server({
       livereload: {
         enable: true,
         filter: function(filePath, cb) {
           if(/main.js/.test(filePath)) {
-            cb(true)
+            cb(true);
           } else if(/style.css/.test(filePath)){
-            cb(true)
+            cb(true);
           }
         }
       },
